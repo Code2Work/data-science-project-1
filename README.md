@@ -8,7 +8,7 @@ Proje sayımız ilerledikçe proje yönetimimizi kolaylaştırmak adına projele
 ### Proje Kurulumu Komutlar
 Aşağıdaki komutları sıtrayla çalıştırınız.
 * python -m venv venv
-* venv\Scripts\activate
+* venv\Scripts\activate - source venv/bin/activate
 * pip install -r requirements.txt => Install all dependencies
 * python watch.py => Python run all tests
 
