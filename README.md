@@ -2,8 +2,8 @@
 
 ## Proje Kurulumu
 
-1. Projeyi **fork** edin ve kendi hesabiniza **clone** edin.
-2. Terminal'de proje klasorune girin.
+1. Projeyi **fork** edin ve kendi hesabınıza **clone** edin.
+2. Terminal'de proje klasörüne girin.
 
 ### Mac / Linux
 ```bash
@@ -19,40 +19,40 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## Veritabani Kurulumu
+## Veritabanı Kurulumu
 
-Sorulari cozebilmek icin once local PostgreSQL veritabaninizda tablolari olusturmaniz gerekiyor:
+Soruları çözebilmek için önce local PostgreSQL veritabanınızda tabloları oluşturmanız gerekiyor:
 
-1. PostgreSQL'in bilgisayarinizda kurulu ve calisir durumda oldugundan emin olun.
-2. `scripts/init_db.py` dosyasindaki SQL komutlarini sirasiyla kendi local veritabaninizda calistirin.
-3. Tablolarin dogru olustugundan emin olmak icin her tabloya birer `SELECT *` sorgusu atin.
+1. PostgreSQL'in bilgisayarınızda kurulu ve çalışır durumda olduğundan emin olun.
+2. `scripts/init_db.py` dosyasındaki SQL komutlarını sırasıyla kendi local veritabanınızda çalıştırın.
+3. Tabloların doğru oluştuğundan emin olmak için her tabloya birer `SELECT *` sorgusu atın.
 
-> **Not:** `data/questions.py` icindeki `connect_db()` fonksiyonunda veritabani baglanti bilgileri var.
-> Localinizde test ederken kendi bilgilerinizle degistirin.
-> **Pushlarken bu bilgileri varsayilan haliyle birakin** (CI/CD ortaminda bu bilgilerle calisiyor).
+> **Not:** `data/questions.py` içindeki `connect_db()` fonksiyonunda veritabanı bağlantı bilgileri var.
+> Localinizde test ederken kendi bilgilerinizle değiştirin.
+> **Pushlarken bu bilgileri varsayılan haliyle bırakın** (CI/CD ortamında bu bilgilerle çalışıyor).
 
-## Baslangic Ayarlari
+## Başlangıç Ayarları
 
-Kodlamaya baslamadan once su iki dosyada kendi bilgilerinizi guncellemeniz gerekiyor:
+Kodlamaya başlamadan önce şu iki dosyada kendi bilgilerinizi güncellemeniz gerekiyor:
 
-1. **`tests/test_question.py`** — Dosyanin altindaki `run_tests()` fonksiyonunda `user_id` degerlerini **kendi bilgilerinizle** degistirin.
-2. **`data/questions.py`** — `connect_db()` fonksiyonundaki veritabani sifresini kendi local PostgreSQL sifrenizle degistirin. **Pushlarken varsayilan haliyle birakin.**
+1. **`tests/test_question.py`** — Dosyanın altındaki `run_tests()` fonksiyonunda `user_id` değerini **kendi kullanıcı ID'nizle** değiştirin.
+2. **`data/questions.py`** — `connect_db()` fonksiyonundaki veritabanı şifresini kendi local PostgreSQL şifrenizle değiştirin. **Pushlarken varsayılan haliyle bırakın.**
 
-## Calisma Sekli
+## Çalışma Şekli
 
-- Sadece `data/questions.py` dosyasinda calisin.
-- Her `question_X_query()` fonksiyonu icindeki bos `cursor.execute('')` satirina SQL sorgunuzu yazin.
-- Diger dosyalari degistirmeyin.
+- Sadece `data/questions.py` dosyasında çalışın.
+- Her `question_X_query()` fonksiyonu içindeki boş `cursor.execute('')` satırına SQL sorgunuzu yazın.
+- Diğer dosyaları değiştirmeyin.
 
-## Testleri Calistirma
+## Testleri Çalıştırma
 
 ```bash
 python watch.py
 ```
 
-Bu komut dosya degisikliklerini izler ve her kaydettiginizde testleri otomatik calistirir.
+Bu komut dosya değişikliklerini izler ve her kaydettiğinizde testleri otomatik çalıştırır.
 
-Tek seferlik calistirmak icin:
+Tek seferlik çalıştırmak için:
 ```bash
 pytest tests/test_question.py -s -v
 ```
@@ -60,7 +60,7 @@ pytest tests/test_question.py -s -v
 ## Tablolar
 
 ### customers
-| Sutun | Tip |
+| Sütun | Tip |
 |-------|-----|
 | customer_id | SERIAL (PK) |
 | customer_name | VARCHAR(100) |
@@ -69,7 +69,7 @@ pytest tests/test_question.py -s -v
 | signup_date | DATE |
 
 ### products
-| Sutun | Tip |
+| Sütun | Tip |
 |-------|-----|
 | product_id | SERIAL (PK) |
 | product_name | VARCHAR(100) |
@@ -77,7 +77,7 @@ pytest tests/test_question.py -s -v
 | stock_quantity | INTEGER |
 
 ### orders
-| Sutun | Tip |
+| Sütun | Tip |
 |-------|-----|
 | order_id | SERIAL (PK) |
 | customer_id | INTEGER (FK -> customers) |
@@ -86,37 +86,37 @@ pytest tests/test_question.py -s -v
 
 ## Sorular
 
-1. **customers** tablosundan tum musterilerin **adlarini ve ulkelerini** getir.
+1. **customers** tablosundan tüm müşterilerin **adlarını ve ülkelerini** getir.
 
-2. **orders** tablosundaki en yuksek tutarli **5 siparisi**, tum sutunlariyla birlikte listele. (`total_amount`'a gore azalan sirada)
+2. **orders** tablosundaki en yüksek tutarlı **5 siparişi**, tüm sütunlarıyla birlikte listele. (`total_amount`'a göre azalan sırada)
 
-3. **products** tablosundan fiyati en dusuk **3 urunu**, sadece **adlari ve fiyatlari** ile getir.
+3. **products** tablosundan fiyatı en düşük **3 ürünü**, sadece **adları ve fiyatları** ile getir.
 
-4. **customers** tablosundaki tum musterileri `signup_date`'e gore **eskiden yeniye** sirala. (Tum sutunlar, LIMIT 10)
+4. **customers** tablosundaki tüm müşterileri `signup_date`'e göre **eskiden yeniye** sırala. (Tüm sütunlar, LIMIT 10)
 
-5. **products** tablosunda en fazla stoga sahip urunu, sadece **adi ve stock_quantity** ile getir. (1 kayit)
+5. **products** tablosunda en fazla stoğa sahip ürünü, sadece **adı ve stock_quantity** ile getir. (1 kayıt)
 
-6. **orders** tablosundaki **son siparisi** (tarihi en guncel olan) tum sutunlariyla listele. (1 kayit)
+6. **orders** tablosundaki **son siparişi** (tarihi en güncel olan) tüm sütunlarıyla listele. (1 kayıt)
 
-7. **products** tablosundan sadece `product_name` sutununu **alfabetik sirada** getir.
+7. **products** tablosundan sadece `product_name` sütununu **alfabetik sırada** getir.
 
-8. **customers** tablosundan `customer_id`'ye gore siralanmis ilk **5 musteriyi**, sadece `customer_id` ve `email` sutunlariyla getir.
+8. **customers** tablosundan `customer_id`'ye göre sıralanmış ilk **5 müşteriyi**, sadece `customer_id` ve `email` sütunlarıyla getir.
 
-9. **orders** tablosundaki tutari en dusuk **3 siparisi**, sadece `order_id` ve `total_amount` ile getir. (`total_amount`'a gore artan sirada)
+9. **orders** tablosundaki tutarı en düşük **3 siparişi**, sadece `order_id` ve `total_amount` ile getir. (`total_amount`'a göre artan sırada)
 
-10. **customers** tablosundan sadece **Turkiye'deki** (`country = 'Turkey'`) musterileri `customer_name`'e gore **alfabetik** sirala. (Tum sutunlar)
+10. **customers** tablosundan sadece **Türkiye'deki** (`country = 'Turkey'`) müşterileri `customer_name`'e göre **alfabetik** sırala. (Tüm sütunlar)
 
 ---
 
-## Ipucu: Ayri Schema Kullanmak
+## İpucu: Ayrı Schema Kullanmak
 
-Localinizdeki PostgreSQL'de baska tablolarla karismasin istiyorsaniz, yeni bir schema olusturabilirsiniz:
+Localinizdeki PostgreSQL'de başka tablolarla karışmasın istiyorsanız, yeni bir schema oluşturabilirsiniz:
 
 ```sql
 CREATE SCHEMA data1;
 ```
 
-Ardindan `scripts/init_db.py` icindeki tablo isimlerinin basina schema adini ekleyin:
+Ardından `scripts/init_db.py` içindeki tablo isimlerinin başına schema adını ekleyin:
 
 ```sql
 CREATE TABLE data1.customers ( ... );
@@ -124,7 +124,7 @@ CREATE TABLE data1.products ( ... );
 CREATE TABLE data1.orders ( ... );
 ```
 
-Foreign key (REFERENCES) tanimlarinda da schema adini eklemeyi unutmayin:
+Foreign key (REFERENCES) tanımlarında da schema adını eklemeyi unutmayın:
 
 ```sql
 CREATE TABLE data1.orders (
@@ -134,10 +134,10 @@ CREATE TABLE data1.orders (
 );
 ```
 
-Sorgularinizda da ayni sekilde schema adini kullanmayi unutmayin:
+Sorgularınızda da aynı şekilde schema adını kullanmayı unutmayın:
 
 ```sql
 SELECT * FROM data1.customers;
 ```
 
-> **Onemli:** Bu sadece localinizde calisirken kolaylik icin. Kodunuzu pushlarken schema oneki olmadan birakin, CI/CD ortaminda `public` schema kullaniliyor.
+> **Önemli:** Bu sadece localinizde çalışırken kolaylık için. Kodunuzu pushlarken schema öneki olmadan bırakın, CI/CD ortamında `public` schema kullanılıyor.
