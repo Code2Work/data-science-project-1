@@ -101,22 +101,25 @@ class ResultCollector:
 def run_tests():
     collector = ResultCollector()
     pytest.main(["tests"], plugins=[collector])
-    print(f"\nToplam Başarılı: {collector.passed}")
-    print(f"Toplam Başarısız: {collector.failed}")
-    
-    user_score = (collector.passed / (collector.passed + collector.failed)) * 100
-    print(round(user_score, 2))
-    
-    url = "https://edugen-backend-487d2168bc6c.herokuapp.com/projectLog/"
+    total = collector.passed + collector.failed
+    print(f"\nToplam Basarili: {collector.passed}")
+    print(f"Toplam Basarisiz: {collector.failed}")
+
+    if total == 0:
+        print("Hic test calistirilmadi.")
+        return
+
+    user_score = round((collector.passed / total) * 100, 2)
+    print(f"Skor: {user_score}")
+
+    url = "https://kaizu-api-8cd10af40cb3.herokuapp.com/projectLog"
     payload = {
         "user_id": 34,
         "project_id": 34,
-        "user_score": round(user_score, 2),
-        "is_auto": False
+        "user_score": user_score,
+        "is_auto": True
     }
-    headers = {
-        "Content-Type": "application/json"
-    }
+    headers = {"Content-Type": "application/json"}
     send_post_request(url, payload, headers)
 
 if __name__ == "__main__":
