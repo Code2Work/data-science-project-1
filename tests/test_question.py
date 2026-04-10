@@ -114,7 +114,7 @@ def run_tests():
 
     url = "https://kaizu-api-8cd10af40cb3.herokuapp.com/projectLog"
     payload = {
-        "user_id": 34,
+        "user_id": 241,
         "project_id": 34,
         "user_score": user_score,
         "is_auto": True
