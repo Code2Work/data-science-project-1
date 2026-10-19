@@ -50,12 +50,16 @@ Kodlamaya başlamadan önce şu iki dosyada kendi bilgilerinizi güncellemeniz g
 python watch.py
 ```
 
-Bu komut dosya değişikliklerini izler ve her kaydettiğinizde testleri otomatik çalıştırır.
+Bu komut dosya değişikliklerini izler ve her kaydettiğinizde testleri otomatik çalıştırır. **Skorunu Kaizu'ya da gönderir.**
 
 Tek seferlik çalıştırmak için:
 ```bash
-pytest tests/test_question.py -s -v
+python tests/test_question.py
 ```
+
+> ⚠️ **Skorun Kaizu'ya gitmesi için** testleri yukarıdaki iki komuttan biriyle çalıştır.
+> `pytest` komutu ya da VS Code'un test butonu sadece testleri çalıştırır, **skoru göndermez.**
+> Göndermeden önce `tests/test_question.py` içindeki `user_id`'nin kendi ID'n olduğundan emin ol.
 
 ## Tablolar
 
