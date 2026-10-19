@@ -31,11 +31,13 @@ Soruları çözebilmek için önce local PostgreSQL veritabanınızda tabloları
 > Localinizde test ederken kendi bilgilerinizle değiştirin.
 > **Pushlarken bu bilgileri varsayılan haliyle bırakın** (CI/CD ortamında bu bilgilerle çalışıyor).
 
+> **Not:** `init_db.py` her çalıştığında tabloları baştan oluşturur. Veriler bozulursa ya da başka projenin tabloları karışırsa tekrar çalıştırman yeterli.
+
 ## Başlangıç Ayarları
 
 Kodlamaya başlamadan önce şu iki dosyada kendi bilgilerinizi güncellemeniz gerekiyor:
 
-1. **`tests/test_question.py`** — Dosyanın altındaki `run_tests()` fonksiyonunda `user_id` değerini **kendi kullanıcı ID'nizle** değiştirin.
+1. **`tests/test_question.py`** — Dosyanın başındaki `USER_ID = 0` satırına **kendi Kaizu ID'ni** yaz (Profile → Settings → User ID). Yazmazsan skorun gönderilmez.
 2. **`data/questions.py`** — `connect_db()` fonksiyonundaki veritabanı şifresini kendi local PostgreSQL şifrenizle değiştirin. **Pushlarken varsayılan haliyle bırakın.**
 
 ## Çalışma Şekli
@@ -59,7 +61,7 @@ python tests/test_question.py
 
 > ⚠️ **Skorun Kaizu'ya gitmesi için** testleri yukarıdaki iki komuttan biriyle çalıştır.
 > `pytest` komutu ya da VS Code'un test butonu sadece testleri çalıştırır, **skoru göndermez.**
-> Göndermeden önce `tests/test_question.py` içindeki `user_id`'nin kendi ID'n olduğundan emin ol.
+> Göndermeden önce `tests/test_question.py` dosyasının başındaki `USER_ID`'nin kendi ID'n olduğundan emin ol.
 
 ## Tablolar
 
